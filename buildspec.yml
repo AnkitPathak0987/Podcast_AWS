@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  build:
+    commands:
+      - echo No build step needed for backend-only project.
+
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - cp appspec.yml .
+      - cp -r scripts .
+
+artifacts:
+  files:
+    - '**/*'
+  base-directory: .
