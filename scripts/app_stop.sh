@@ -1,4 +1,7 @@
 #!/bin/bash
-echo "Running app_stop.sh"
-echo "Stopping existing Node.js app"
-pkill node || echo "No node process running"
+export NVM_DIR="/root/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+echo "Stopping Node application if running..."
+pm2 stop mern-todo-app || true
+pm2 delete mern-todo-app || true

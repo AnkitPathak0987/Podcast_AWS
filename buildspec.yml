@@ -5,16 +5,18 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - echo Installing dependencies...
+      - echo Installing dependencies…
       - npm install
 
   build:
     commands:
-      - echo No build step needed for backend-only project.
+      - echo No build step needed for this backend-only project.
 
   post_build:
     commands:
       - echo Build completed on `date`
+      # Ensure your lifecycle scripts are executable
+      - chmod +x scripts/*.sh
       - cp appspec.yml .
       - cp -r scripts .
 
