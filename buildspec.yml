@@ -5,23 +5,26 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - echo Installing backend dependencies…
+      - echo "Entering project root…"
+      - cd podcaster
+
+      - echo "Installing backend dependencies…"
       - cd backend
       - npm install
-      - echo Installing frontend dependencies…
-      - cd ../frontend
+      - cd ..
+
+      - echo "Installing frontend dependencies…"
+      - cd frontend
       - npm install
+      - cd ..
 
   build:
     commands:
-      - echo No build step needed for this backend-only project.
+      - echo "No build step needed for this backend-only project."
 
-  
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo "Listing scripts directory contents..."
-      - ls -al scripts/  # This will show the files inside the scripts folder
+      - echo "Build completed on $(date)"
       - chmod +x scripts/*.sh
       - cp appspec.yml .
       - cp -r scripts .
@@ -29,4 +32,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: .
+  base-directory: podcaster
