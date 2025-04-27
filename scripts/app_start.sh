@@ -1,10 +1,4 @@
 #!/bin/bash
-#echo "Running app_start.sh"
-#cd /var/www/podcaster || exit
-#npm install
-#npm run start &
-
-#!/bin/bash
 set -e # Exit immediately if a command exits with a non-zero status.
 
 APP_DIR="/var/www/podcaster"
@@ -50,4 +44,3 @@ pm2 startup | bash || echo "PM2 startup script failed, manual setup may be neede
 pm2 save || echo "PM2 save command failed"
 
 echo "Application started successfully."
-
