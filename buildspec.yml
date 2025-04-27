@@ -16,9 +16,12 @@ phases:
     commands:
       - echo No build step needed for this backend-only project.
 
+  
   post_build:
     commands:
       - echo Build completed on `date`
+      - echo "Listing scripts directory contents..."
+      - ls -al scripts/  # This will show the files inside the scripts folder
       - chmod +x scripts/*.sh
       - cp appspec.yml .
       - cp -r scripts .
