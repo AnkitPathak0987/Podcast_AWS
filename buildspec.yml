@@ -5,18 +5,11 @@ phases:
     runtime-versions:
       nodejs: 16
     commands:
-      - echo "Entering project root…"
-      - cd podcaster
-
       - echo "Installing backend dependencies…"
-      - cd backend
-      - npm install
-      - cd ..
+      - cd backend && npm install && cd ..
 
       - echo "Installing frontend dependencies…"
-      - cd frontend
-      - npm install
-      - cd ..
+      - cd frontend && npm install && cd ..
 
   build:
     commands:
@@ -26,10 +19,8 @@ phases:
     commands:
       - echo "Build completed on $(date)"
       - chmod +x scripts/*.sh
-      - cp appspec.yml .
-      - cp -r scripts .
 
 artifacts:
   files:
     - '**/*'
-  base-directory: podcaster
+  base-directory: .
