@@ -34,6 +34,14 @@ Parameters:
     Type: Number
     Default: 1000
 
+  VpcId:
+    Description: VPC ID to deploy resources into
+    Type: AWS::EC2::VPC::Id
+
+  SubnetId:
+    Description: Subnet ID to launch the EC2 instance into
+    Type: AWS::EC2::Subnet::Id
+
 Resources:
   PodcasterEC2Role:
     Type: AWS::IAM::Role
@@ -68,7 +76,7 @@ Resources:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow SSH, HTTP, and App Port for Podcaster
-      VpcId: vpc-0fe63abd7f6fd3049
+      VpcId: !Ref VpcId
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
@@ -98,7 +106,7 @@ Resources:
           DeviceIndex: '0'
           GroupSet:
             - !Ref PodcasterSG
-          SubnetId: subnet-073f447c8dd116aa5
+          SubnetId: !Ref SubnetId
       Tags:
         - Key: Name
           Value: PodcasterServer-CFN
